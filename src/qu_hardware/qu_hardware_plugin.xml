@@ -1,0 +1,9 @@
+<library path="libqu_hardware_interface">
+  <class name="qu_hardware/QuHardwareInterface"
+         type="qu_hardware::QuHardwareInterface"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Hardware interface for quadruped robot with Arduino control
+    </description>
+  </class>
+</library>

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<ros2_control name="qu" type="system">
+  <hardware>
+    <plugin>qu_hardware/QuHardwareInterface</plugin>
+    <param name="serial_port">/dev/ttyACM0</param>
+    <param name="baud_rate">115200</param>
+  </hardware>
+  
+  <!-- Hip Joints -->
+  <joint name="hip_front_right">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="hip_front_left">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="hip_back_right">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="hip_back_left">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <!-- Upper Leg Joints -->
+  <joint name="upper_leg_front_right">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="upper_leg_front_left">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="upper_leg_back_right">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="upper_leg_back_left">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <!-- Lower Leg Joints -->
+  <joint name="lower_leg_front_right">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="lower_leg_front_left">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="lower_leg_back_right">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+  <joint name="lower_leg_back_left">
+    <command_interface name="position" />
+    <state_interface name="position" />
+  </joint>
+  
+</ros2_control>
+
+</robot>

@@ -1,0 +1,521 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.0339791631590955 0.00380847068418536 0.000887471069570558" rpy="0 0 0" />
+      <mass value="0.640355588852556" />
+      <inertia
+        ixx="0.00190592102320622"
+        ixy="-8.550078354135E-07"
+        ixz="-1.1472674834457E-07"
+        iyy="0.00102167555137532"
+        iyz="-4.05723251345755E-06"
+        izz="0.00137688759367021" />
+    </inertial>
+    
+    <visual>
+      <origin xyz="0 0 0.09" rpy="0 1.5708 0" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/base_link.stl" />
+      </geometry>
+    </visual>
+    
+    <collision>
+      <origin xyz="0 0 0.09" rpy="0 1.5708 0" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ========== FRONT RIGHT LEG ========== -->
+  
+  <!-- Hip Link FR -->
+  <link name="hip_front_right">
+    <inertial>
+      <origin xyz="-0.0263049634741928 -0.00328314985238911 0.0104147139362361" rpy="0 0 0" />
+      <mass value="0.0651782389959226" />
+      <inertia
+        ixx="2.05907584865794E-05"
+        ixy="5.41740464590389E-07"
+        ixz="3.22479705749544E-07"
+        iyy="2.47921298483818E-05"
+        iyz="-4.84168087573281E-07"
+        izz="1.17472982428733E-05" />
+    </inertial>
+    
+    <visual>
+      <origin xyz="0.04 0.021 0.017" rpy="3.14 0 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/head_front_forward_right.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.04 0.021 0.017" rpy="3.14 0 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/head_front_forward_right.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Hip Joint FR -->
+  <joint name="hip_front_right" type="revolute">
+    <origin xyz="-0.1 0.135 0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hip_front_right"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- Upper Leg Link FR -->
+  <link name="upper_leg_front_right">
+    <inertial>
+      <origin xyz="-0.0293472325462129 -0.0326544446067611 -0.0420830734856089" rpy="0 0 0" />
+      <mass value="0.137291251136162" />
+      <inertia
+        ixx="0.000241478808718855"
+        ixy="-3.45049517361544E-06"
+        ixz="-0.000147136869197302"
+        iyy="0.00033404045364379"
+        iyz="-4.93959255904915E-06"
+        izz="0.000127320779893877" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0.053 -0.0009 0.013" rpy="0.0 -0.62 -1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/upper_leg3.stl" />
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.053 -0.0009 0.013" rpy="0.0 -0.62 -1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/upper_leg3.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Upper Leg Joint FR -->
+  <joint name="upper_leg_front_right" type="revolute">
+    <origin xyz="-0.03 0.0 0.0" rpy="0 0 0"/>
+    <parent link="hip_front_right"/>
+    <child link="upper_leg_front_right"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- Lower Leg Link FR -->
+  <link name="lower_leg_front_right">
+    <inertial>
+      <origin xyz="0.040381855621984 -0.029177389785492 -0.0233051878392252" rpy="0 0 0" />
+      <mass value="0.146291724346205" />
+      <inertia
+        ixx="0.000116692178771142"
+        ixy="-4.10507263575127E-06"
+        ixz="0.000148316424066739"
+        iyy="0.000369863294472716"
+        iyz="2.38120345640091E-06"
+        izz="0.000281214355888445" />
+    </inertial>
+  
+    <visual>
+      <origin xyz="0.04 -0.0009 -0.02" rpy="0 1.07 -1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/lower_leg1.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.04 -0.0009 -0.02" rpy="0 1.07 -1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/lower_leg1.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Lower Leg Joint FR -->
+  <joint name="lower_leg_front_right" type="revolute">
+    <origin xyz="0.0 0.0 -0.14" rpy="0 0 0" />
+    <parent link="upper_leg_front_right" />
+    <child link="lower_leg_front_right" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- ========== FRONT LEFT LEG ========== -->
+  
+  <!-- Hip Link FL -->
+  <link name="hip_front_left">
+    <inertial>
+      <origin xyz="-0.0263049634741928 0.00328314985238911 0.0104147139362361" rpy="0 0 0" />
+      <mass value="0.0651782389959226" />
+      <inertia
+        ixx="2.05907584865794E-05"
+        ixy="-5.41740464590389E-07"
+        ixz="3.22479705749544E-07"
+        iyy="2.47921298483818E-05"
+        iyz="4.84168087573281E-07"
+        izz="1.17472982428733E-05" />
+    </inertial>
+
+    <visual>
+      <origin xyz="-0.04 0.021 0.017" rpy="3.14 0 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/head_front_forward_left.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="-0.04 0.021 0.017" rpy="3.14 0 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/head_front_forward_left.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Hip Joint FL -->
+  <joint name="hip_front_left" type="revolute">
+    <origin xyz="0.1 0.135 0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hip_front_left"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- Upper Leg Link FL -->
+  <link name="upper_leg_front_left">
+    <inertial>
+      <origin xyz="-0.0293472325462129 -0.0326544446067611 -0.0420830734856089" rpy="0 0 0" />
+      <mass value="0.137291251136162" />
+      <inertia
+        ixx="0.000241478808718855"
+        ixy="-3.45049517361544E-06"
+        ixz="-0.000147136869197302"
+        iyy="0.00033404045364379"
+        iyz="-4.93959255904915E-06"
+        izz="0.000127320779893877" />
+    </inertial>
+
+    <visual>
+      <origin xyz="-0.053 -0.0009 0.013" rpy="0.0 -0.62 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/upper_leg3.stl" />
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+
+    <collision>
+      <origin xyz="-0.053 -0.0009 0.013" rpy="0.0 -0.62 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/upper_leg3.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Upper Leg Joint FL -->
+  <joint name="upper_leg_front_left" type="revolute">
+    <origin xyz="0.03 0.0 0.0" rpy="0 0 0"/>
+    <parent link="hip_front_left"/>
+    <child link="upper_leg_front_left"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- Lower Leg Link FL -->
+  <link name="lower_leg_front_left">
+    <inertial>
+      <origin xyz="0.040381855621984 -0.029177389785492 -0.0233051878392252" rpy="0 0 0" />
+      <mass value="0.146291724346205" />
+      <inertia
+        ixx="0.000116692178771142"
+        ixy="-4.10507263575127E-06"
+        ixz="0.000148316424066739"
+        iyy="0.000369863294472716"
+        iyz="2.38120345640091E-06"
+        izz="0.000281214355888445" />
+    </inertial>
+  
+    <visual>
+      <origin xyz="-0.04 -0.0009 -0.02" rpy="0 1.07 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/lower_leg1.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="-0.04 -0.0009 -0.02" rpy="0 1.07 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/lower_leg1.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Lower Leg Joint FL -->
+  <joint name="lower_leg_front_left" type="revolute">
+    <origin xyz="0.0 0.0 -0.14" rpy="0 0 0" />
+    <parent link="upper_leg_front_left" />
+    <child link="lower_leg_front_left" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- ========== BACK RIGHT LEG ========== -->
+  
+  <!-- Hip Link BR -->
+  <link name="hip_back_right">
+    <inertial>
+      <origin xyz="0.0263049634741928 0.00328314985238911 0.0104147139362361" rpy="0 0 0" />
+      <mass value="0.0651782389959226" />
+      <inertia
+        ixx="2.05907584865794E-05"
+        ixy="5.41740464590389E-07"
+        ixz="-3.22479705749544E-07"
+        iyy="2.47921298483818E-05"
+        iyz="4.84168087573281E-07"
+        izz="1.17472982428733E-05" />
+    </inertial>
+
+    <visual>
+      <origin xyz="-0.049 -0.021 0.017" rpy="3.14 0 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/head_back_left.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="-0.049 -0.021 0.017" rpy="3.14 0 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/head_back_left.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Hip Joint BR -->
+  <joint name="hip_back_right" type="revolute">
+    <origin xyz="0.1 -0.135 0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hip_back_right"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- Upper Leg Link BR -->
+  <link name="upper_leg_back_right">
+    <inertial>
+      <origin xyz="-0.0293472325462129 -0.0326544446067611 -0.0420830734856089" rpy="0 0 0" />
+      <mass value="0.137291251136162" />
+      <inertia
+        ixx="0.000241478808718855"
+        ixy="-3.45049517361544E-06"
+        ixz="-0.000147136869197302"
+        iyy="0.00033404045364379"
+        iyz="-4.93959255904915E-06"
+        izz="0.000127320779893877" />
+    </inertial>
+
+    <visual>
+      <origin xyz="-0.053 -0.0009 0.013" rpy="0.0 -0.62 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/upper_leg3.stl" />
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+
+    <collision>
+      <origin xyz="-0.053 -0.0009 0.013" rpy="0.0 -0.62 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/upper_leg3.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Upper Leg Joint BR -->
+  <joint name="upper_leg_back_right" type="revolute">
+    <origin xyz="0.03 0.0 0.0" rpy="0 0 0"/>
+    <parent link="hip_back_right"/>
+    <child link="upper_leg_back_right"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- Lower Leg Link BR -->
+  <link name="lower_leg_back_right">
+    <inertial>
+      <origin xyz="0.040381855621984 -0.029177389785492 -0.0233051878392252" rpy="0 0 0" />
+      <mass value="0.146291724346205" />
+      <inertia
+        ixx="0.000116692178771142"
+        ixy="-4.10507263575127E-06"
+        ixz="0.000148316424066739"
+        iyy="0.000369863294472716"
+        iyz="2.38120345640091E-06"
+        izz="0.000281214355888445" />
+    </inertial>
+  
+    <visual>
+      <origin xyz="-0.04 -0.0009 -0.02" rpy="0 1.07 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/lower_leg1.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="-0.04 -0.0009 -0.02" rpy="0 1.07 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/lower_leg1.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Lower Leg Joint BR -->
+  <joint name="lower_leg_back_right" type="revolute">
+    <origin xyz="0.0 0.0 -0.14" rpy="0 0 0" />
+    <parent link="upper_leg_back_right" />
+    <child link="lower_leg_back_right" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- ========== BACK LEFT LEG ========== -->
+  
+  <!-- Hip Link BL -->
+  <link name="hip_back_left">
+    <inertial>
+      <origin xyz="0.0263049634741928 -0.00328314985238911 0.0104147139362361" rpy="0 0 0" />
+      <mass value="0.0651782389959226" />
+      <inertia
+        ixx="2.05907584865794E-05"
+        ixy="-5.41740464590389E-07"
+        ixz="-3.22479705749544E-07"
+        iyy="2.47921298483818E-05"
+        iyz="-4.84168087573281E-07"
+        izz="1.17472982428733E-05" />
+    </inertial>
+    
+    <visual>
+      <origin xyz="0.049 -0.021 0.017" rpy="3.14 0 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/head_back_right.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.049 -0.021 0.017" rpy="3.14 0 1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/head_back_right.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Hip Joint BL -->
+  <joint name="hip_back_left" type="revolute">
+    <origin xyz="-0.1 -0.135 0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hip_back_left"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- Upper Leg Link BL -->
+  <link name="upper_leg_back_left">
+    <inertial>
+      <origin xyz="-0.0293472325462129 -0.0326544446067611 -0.0420830734856089" rpy="0 0 0" />
+      <mass value="0.137291251136162" />
+      <inertia
+        ixx="0.000241478808718855"
+        ixy="-3.45049517361544E-06"
+        ixz="-0.000147136869197302"
+        iyy="0.00033404045364379"
+        iyz="-4.93959255904915E-06"
+        izz="0.000127320779893877" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0.053 -0.0009 0.013" rpy="0.0 -0.62 -1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/upper_leg3.stl" />
+      </geometry>
+      <material name="yellow"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.053 -0.0009 0.013" rpy="0.0 -0.62 -1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/upper_leg3.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Upper Leg Joint BL -->
+  <joint name="upper_leg_back_left" type="revolute">
+    <origin xyz="-0.03 0.0 0.0" rpy="0 0 0"/>
+    <parent link="hip_back_left"/>
+    <child link="upper_leg_back_left"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+  <!-- Lower Leg Link BL -->
+  <link name="lower_leg_back_left">
+    <inertial>
+      <origin xyz="0.040381855621984 -0.029177389785492 -0.0233051878392252" rpy="0 0 0" />
+      <mass value="0.146291724346205" />
+      <inertia
+        ixx="0.000116692178771142"
+        ixy="-4.10507263575127E-06"
+        ixz="0.000148316424066739"
+        iyy="0.000369863294472716"
+        iyz="2.38120345640091E-06"
+        izz="0.000281214355888445" />
+    </inertial>
+  
+    <visual>
+      <origin xyz="0.04 -0.0009 -0.02" rpy="0 1.07 -1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/lower_leg1.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.04 -0.0009 -0.02" rpy="0 1.07 -1.57" />
+      <geometry>
+        <mesh filename="package://qu_description/meshes/lower_leg1.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Lower Leg Joint BL -->
+  <joint name="lower_leg_back_left" type="revolute">
+    <origin xyz="0.0 0.0 -0.14" rpy="0 0 0" />
+    <parent link="upper_leg_back_left" />
+    <child link="lower_leg_back_left" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-1.57" upper="1.57" effort="10.0" velocity="6"/>
+    <dynamics friction="0.1" damping="0.01"/>
+  </joint>
+
+</robot>

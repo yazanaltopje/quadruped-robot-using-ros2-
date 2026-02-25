@@ -1,0 +1,26 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    
+    position_controller:
+      type: forward_command_controller/ForwardCommandController
+
+position_controller:
+  ros__parameters:
+    joints:
+      - hip_front_right
+      - hip_front_left
+      - hip_back_right
+      - hip_back_left
+      - upper_leg_front_right
+      - upper_leg_front_left
+      - upper_leg_back_right
+      - upper_leg_back_left
+      - lower_leg_front_right
+      - lower_leg_front_left
+      - lower_leg_back_right
+      - lower_leg_back_left
+    interface_name: position
